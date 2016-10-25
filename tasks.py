@@ -16,7 +16,7 @@ def retweet(tweet_id):
 @app.task
 def post_to_slack(tweet):
     requests.post(settings['slack_url'], json={
-        'text': tweet['text'],
-        'username': 'Twitter: %s (@%s)' % (tweet['user']['name'], tweet['user']['screen_name']),
-        'icon_url': tweet['user']['profile_image_url']
+        'text': '<https://twitter.com/%s/status/%s|New tweet> using the hashtag' % (tweet['user']['screen_name'], tweet['id_str']),
+        'username': '#PhillyCheeseStack @ Twitter',
+        'icon_url': 'https://pbs.twimg.com/profile_images/789819457711509505/KqkPyjP4.jpg'
     })
