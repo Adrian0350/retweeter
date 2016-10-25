@@ -17,6 +17,6 @@ def retweet(tweet_id):
 def post_to_slack(tweet):
     requests.post(settings['slack_url'], json={
         'text': tweet['text'],
-        'username': '%s (@%s)' % (tweet['user']['name'], tweet['user']['screen_name']),
+        'username': 'Twitter: %s (@%s)' % (tweet['user']['name'], tweet['user']['screen_name']),
         'icon_url': tweet['user']['profile_image_url']
     })
