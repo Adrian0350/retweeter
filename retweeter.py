@@ -1,5 +1,5 @@
 from twython import TwythonStreamer
-from tasks import retweet
+from tasks import retweet, post_to_slack
 from config import settings
 
 
@@ -7,6 +7,7 @@ class Retweeter(TwythonStreamer):
     def on_success(self, data):
         if 'retweeted_status' not in data:
             retweet.delay(data['id'])
+            post_to_slack.delay(data)
 
     def on_error(self, status_code, data):
         print data

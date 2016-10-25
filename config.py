@@ -6,5 +6,6 @@ settings = {
         'OAUTH_TOKEN_SECRET': '',
     },
     'celery_broker': '',
+    'slack_url': '',
     'what_to_track': ''
 }
