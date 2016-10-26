@@ -8,6 +8,6 @@ settings = {
     'celery_broker': '',
     'slack_url': '',
     'db_path': '',
-    'only_followers_of': '',
+    'only_followers_of': [''],
     'what_to_track': ''
 }

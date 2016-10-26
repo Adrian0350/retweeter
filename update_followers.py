@@ -13,12 +13,13 @@ conn.commit()
 tw = settings['twitter']
 twitter = Twython(tw['APP_KEY'], tw['APP_SECRET'], tw['OAUTH_TOKEN'], tw['OAUTH_TOKEN_SECRET'])
 
-next_cursor = None
-while next_cursor != '0':
-    res = twitter.get_followers_ids(screen_name=settings['only_followers_of'], stringify_ids=True, cursor=next_cursor)
-    for user_id in res['ids']:
-        c.execute("""INSERT OR IGNORE INTO followers(id) VALUES ('%s')""" % user_id)
-        conn.commit()
-    next_cursor = res['next_cursor_str']
+for account in settings['only_followers_of']:
+    next_cursor = None
+    while next_cursor != '0':
+        res = twitter.get_followers_ids(screen_name=account, stringify_ids=True, cursor=next_cursor)
+        for user_id in res['ids']:
+            c.execute("""INSERT OR IGNORE INTO followers(id) VALUES ('%s')""" % user_id)
+            conn.commit()
+        next_cursor = res['next_cursor_str']
 
 conn.close()
