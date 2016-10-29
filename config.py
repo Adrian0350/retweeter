@@ -8,6 +8,7 @@ settings = {
     'celery_broker': '',
     'slack_url': '',
     'db_path': '',
+    'update_status_path': '',
     'only_followers_of': [''],
     'what_to_track': ''
 }
