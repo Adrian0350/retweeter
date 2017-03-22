@@ -6,6 +6,8 @@ import sqlite3
 
 class Retweeter(TwythonStreamer):
     def is_follower(self, user_id):
+        if not settings['db_path']:
+            return True
         conn = sqlite3.connect(settings['db_path'])
         c = conn.cursor()
         c.execute("""SELECT id FROM followers WHERE id='%s'""" % user_id)
